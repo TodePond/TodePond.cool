@@ -1,13 +1,13 @@
 import Habitat from "./libraries/habitat-import.js"
 import { serve } from "https://deno.land/std@0.152.0/http/server.ts";
 
-Habitat.install(globalThis)
+Habitat.install(window)
 
-await serve(req => {
+await serve(() => {
+
 	const html = "<div>Hello world!</div>"
-	return new Response(html, {
-		headers: {
-			"content-type": "text/html",
-		}
-	})
+	const headers = {"content-type": "text"}
+	const options = {headers}
+	return new Response(html, options)
+
 }, {port: 8000})
